@@ -1,3 +1,5 @@
+// https://www.hackerrank.com/challenges/conditional-statements-in-c/problem
+
 #include <assert.h>
 #include <limits.h>
 #include <math.h>
