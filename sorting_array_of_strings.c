@@ -5,7 +5,8 @@
 #include <string.h>
 
 void quicksort(char **a, int p, int r, int (*cmpf)(const char *a, const char *b));
-int partition(char **arr, int p, int q, int (*cmpf)(const char *a, const char *b));
+int partition(char **a, int p, int q, int (*cmpf)(const char *a, const char *b));
+void swap(char **a, int i, int j);
 int num_distinct_chars(const char *s);
 
 int lexicographic_sort(const char* a, const char* b) {
@@ -59,24 +60,24 @@ int partition(char **a, int p, int r, int (*cmpf)(const char *a, const char *b))
   for (int j = p; j <= r - 1; j++) {
     if (cmpf(a[j], pivot) <= 0) {
       i = i + 1;
-      char *t = a[i];
-      a[i] = a[j];
-      a[j] = t;
+      swap(a, i, j);
     }
   }
-  char *t = a[i + 1];
-  a[i + 1] = a[r];
-  a[r] = t;
+  swap(a, i + 1, r);
   return i + 1;
 }
 
+void swap(char **a, int i, int j) {
+  char *t = a[i];
+  a[i] = a[j];
+  a[j] = t;
+}
 
 int main() {
   int n;
   scanf("%d", &n);
 
-  char** arr;
-	arr = (char**)malloc(n * sizeof(char*));
+  char **arr = (char**)malloc(n * sizeof(char*));
 
   for(int i = 0; i < n; i++){
     *(arr + i) = malloc(1024 * sizeof(char));
